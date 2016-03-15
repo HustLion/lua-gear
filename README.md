@@ -1,6 +1,8 @@
 # lua-gear
 Inversion of Control implementation in lua
 
+[![Build Status](https://travis-ci.org/basiliscos/lua-gear.png)](https://travis-ci.org/basiliscos/lua-gear)
+
 If you know Java spring framework https://spring.io/ , this library is may be for you. The Inversion of Control https://en.wikipedia.org/wiki/Inversion_of_control approach allows you to get rid of Singleton https://en.wikipedia.org/wiki/Singleton_pattern anti-pattern, and more easily manage complex depencencies.
 
 The `gear` library *does not* provide Dependecy Injection https://en.wikipedia.org/wiki/Dependency_injection as there is no reflection in lua.
