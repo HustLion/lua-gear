@@ -101,13 +101,15 @@ function Gear:get(name)
   decl.instance = instance
 
   -- possibly instantiate dependencies
+  local dependency_instances = {}
   for _, dependency in ipairs(decl.dependencies) do
-    self:get(dependency)
+    local d = self:get(dependency)
+    table.insert(dependency_instances, d)
   end
 
   -- initialize instance
   if (decl.initializer) then
-    decl.initializer(self, instance)
+    decl.initializer(self, instance, table.unpack(dependency_instances))
   end
 
   return instance

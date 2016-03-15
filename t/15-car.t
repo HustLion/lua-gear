@@ -12,16 +12,17 @@ g:declare("wheels",
 )
 g:declare("engine", {"fuel"},
   function() return { class = "engine" } end,
-  function(gear, instance) instance.fuel = gear:get("fuel") end
+  function(gear, instance, fuel) instance.fuel = fuel end
 )
 g:set("data/car/year", 2015)
 g:declare("car", {"data/car/year", "engine", "wheels"},
   function() return { class = "car" } end,
-  function(gear, instance)
-    instance.engine = gear:get("engine")
-    instance.wheels = gear:get("wheels")
+  function(gear, instance, year, engine, wheels)
+    print("year = " .. tostring(year))
+    instance.engine = engine
+    instance.wheels = wheels
     instance.model  = "MAZ"
-    instance.year   = g:get("data/car/year")
+    instance.year   = year
   end
 )
 local car = g:get("car")
