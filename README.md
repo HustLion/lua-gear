@@ -21,6 +21,7 @@ gear:declare("egg", {"chicken"},
   function(gear, instance, chicken) instance.chicken = chicken end
 )
 
+-- solved!
 local chicken = gear:get("chicken")
 print(chiken.class)
 print(chiken.egg.class)
@@ -62,3 +63,14 @@ local engine = gear:get("engine")
 ```
 
 
+# Installation
+
+`luarocks install gear`
+
+# License 
+
+Artistic License 2.0
+
+# Author
+
+Ivan Baidakou (basiliscos), https://github.com/basiliscos
