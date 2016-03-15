@@ -29,3 +29,36 @@ print(egg.class)
 print(egg.chiken.class)
 
 ```
+
+# API
+
+```lua
+local Gear = require "gear"
+local gear = Gear.create()          -- construct the container
+
+-- the order of declaring components does NOT matter
+
+gear:declare("car",                                -- component name, required
+  {"wheels", "engine", "data/year"},               -- list of names of dependecies, optional
+  function()                                       -- constructor, required
+    return { class = "car" },                      -- must return something non-nill
+  end.
+  function(gear, instance, wheels, engine, year)   -- initializer, optional
+    instance.wheels = wheels
+    instance.engine = engine
+    instance.year   = year
+  end
+)
+
+-- simple constructors
+gear:declare("wheels",function() return { class = "wheels" } end)
+gear:declare("engine",function() return { class = "engine" } end)
+
+-- directly set pre-initialized (or externally initialized components)
+gear:set("data/year", 2015)
+
+-- Voila!
+local engine = gear:get("engine") 
+```
+
+
