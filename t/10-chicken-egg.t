@@ -7,11 +7,11 @@ local declarator = function()
   local g = Gear.create()
   g:declare("chicken", {"egg"},
     function() return { class = "chicken" } end,
-    function(g, instance) instance.egg = g:get('egg') end
+    function(g, instance, egg) instance.egg = egg end
   )
   g:declare("egg", {"chicken"},
     function() return { class = "egg" } end,
-    function(g, instance) instance.chicken = g:get('chicken') end
+    function(g, instance, chicken) instance.chicken = chicken end
   )
   return g
 end
