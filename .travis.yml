@@ -1,9 +1,16 @@
-language: lua
+language: python
+sudo: false
 
-addons:
-  apt:
-    packages:
-    - luarocks
+env:
+  - LUA="lua=5.2"
+  - LUA="lua=5.3"
+
+
+before_install:
+  - pip install hererocks
+  - hererocks lua_install -r^ --$LUA
+  - export PATH=$PATH:$PWD/lua_install/bin # Add directory with all installed binaries to PATH
+
 
 install:
   - lua --version
