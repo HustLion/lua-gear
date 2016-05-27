@@ -90,10 +90,6 @@ has.chicken = { is = 'ro', isa = 'Chicken' }
 class 'Chicken'
 has.egg = { is = 'ro', isa = 'Egg' }
 
-
-local Gear = require "gear"
-local gear = Gear.create()
-
 local resolver = function(component_name)
   -- drop "my/" prefix
   local my_class_name = string.sub(component_name, 4)
@@ -109,6 +105,9 @@ local resolver = function(component_name)
   end
   return dependencies
 end
+
+local Gear = require "gear"
+local gear = Gear.create()
 
 gear:declare("my/Chicken", {
   resolver    = resolver,
