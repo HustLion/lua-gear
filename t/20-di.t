@@ -4,7 +4,6 @@ require 'Test.More'
 require 'Coat'
 
 local meta = require 'Coat.Meta.Class'
-local inspect = require('inspect')
 
 class 'Egg'
 has.name = { is = 'ro' }
