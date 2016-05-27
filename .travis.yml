@@ -14,6 +14,6 @@ before_install:
 
 install:
   - lua -v
-  - luarocks install lua-testmore
+  - luarocks install lua-testmore lua-coat
 
 script: ./test.sh
