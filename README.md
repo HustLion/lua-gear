@@ -46,7 +46,7 @@ local gear = Gear.create()          -- construct the container
 gear:declare("car",                                                -- component name, required
   {                                                                -- component descriptor, required
     dependencies = {"wheels", "engine", "data/year"},              -- list of names of dependecies, optional
-    resolver     = function()                                      -- "dynamic" dependencies, needed for DI
+    resolver     = function(component_name)                        -- "dynamic" dependencies, needed for DI
       return {"wheels", "engine", "data/year"}
     end,
     constructor = function()                                       -- constructor, required
