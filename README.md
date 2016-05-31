@@ -73,6 +73,33 @@ gear:set("data/year", 2015)
 local engine = gear:get("engine") 
 ```
 
+# Provides
+
+Let's assume that we have `nuclear-reaction` component, which is able to generate `Thorium-234` and `Helium-4` atoms (componets), when `Uranium-238` is provided as input. Here is an example, how gear can handle that
+
+```lua
+local gear = Gear.create()
+gear:declare("nuclear-reaction", {
+  dependencies = {"Uranium-238"},
+  provides     = {"Thorium-234", "Helium-4"},
+  constructor  = function() return "process/nuclear-reaction" end,
+  initializer  = function() return "element/Thorium-234", "element/Helium-4" end,
+})
+gear:declare("Uranium-238", {
+  constructor  = function() return "element/Uranium-238" end,
+  initializer  = function() end,
+})
+
+-- Oh, yes!
+
+local thorium = gear:get("Thorium-234") -- element/Thorium-234
+local helium = geag:get("Helium-4")     -- "element/Helium-4"
+
+```
+
+If `provides` section is defined, then `initialize` should return the provided objects after the root object initialization.
+
+
 # Dependency injection example
 
 Dependency Injection is possible when underlying class-system provides field-level fields enumeration for used classes, and class can be dynamically looked up via it's name. 
