@@ -46,6 +46,7 @@ local gear = Gear.create()          -- construct the container
 gear:declare("car",                                                -- component name, required
   {                                                                -- component descriptor, required
     dependencies = {"wheels", "engine", "data/year"},              -- list of names of dependecies, optional
+    -- dependencies = function() return { "wheels" } end           -- alternative for DI
     resolver     = function(component_name)                        -- "dynamic" dependencies, needed for DI
       return {"wheels", "engine", "data/year"}
     end,
@@ -53,10 +54,11 @@ gear:declare("car",                                                -- component 
       return { class = "car" },                                    -- must return something non-nill
     end,
     initializer = function(gear, instance, wheels, engine, year)   -- initializer, optional
-      instance.wheels = wheels
-      instance.engine = engine
-      instance.year   = year
-    end
+      instance.wheels = wheels                                     -- if "provides" is defined, then initialized is 
+      instance.engine = engine                                     -- mandatory, and it should return the 
+      instance.year   = year                                       -- list of objects, which are defined in "provdes"
+    end,                                                           -- section
+    provides = { "some-other-components" },
   }
 )
 
